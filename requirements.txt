@@ -1,0 +1,30 @@
+# Core libraries
+numpy>=1.26,<2.0
+opencv-python>=4.8.0
+Pillow>=10.0.0
+ffmpeg-python>=0.2.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+typing-extensions>=4.7.0
+litellm>=1.0.0
+
+# Text metrics
+bert-score>=0.3.13
+transformers>=4.53.2
+accelerate>=1.1.0
+sentencepiece>=0.1.99
+rouge-score>=0.1.2
+
+# Video metrics and vision backbones (adjust torch wheels for your platform)
+torch>=2.1.0,<2.8
+torchvision>=0.16.0,<0.19
+open-clip-torch==2.24.0
+lpips==0.1.4
+timm==0.9.12
+piq>=0.8.0
+ftfy>=6.1.0
+huggingface-hub>=0.24.0
+
+# Video preference models
+qwen-vl-utils>=0.0.14
+av>=16.0.1

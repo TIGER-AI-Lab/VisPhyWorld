@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Animation</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+    <!-- Load Three.js using ES modules (recommended way) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "cannon": "https://cdn.jsdelivr.net/npm/cannon@0.20.0/build/cannon.min.js"
+        }
+    }
+    </script>
+    
+    <!-- Load Cannon.js from CDNJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
+    
+    <!-- Load recording utility -->
+    <script src="recording.js"></script>
+    <script>
+        window.__codexRecordingStarted = false;
+        window.__codexEnsureRecording = function() {
+            if (window.__codexRecordingStarted) {
+                return;
+            }
+            const canvas = document.querySelector('canvas');
+            if (!canvas) {
+                console.warn('⚠️ 未找到canvas元素，无法自动启动录制');
+                return;
+            }
+            const targetMs = Number(window.__codexTargetDurationMs ?? window.__codexMinRecordingDurationMs);
+            const durationMs = Number.isFinite(targetMs) && targetMs > 0 ? targetMs : 0;
+            if (typeof window.setupRecording === 'function') {
+                console.warn('⚠️ setupRecording 未被调用，自动启动录制');
+                try {
+                    window.setupRecording(canvas, durationMs);
+                } catch (error) {
+                    console.error('❌ 自动启动录制失败', error);
+                }
+            } else if (typeof window.__codexOriginalSetupRecording === 'function') {
+                console.warn('⚠️ setupRecording 包装器不可用，直接调用原始函数');
+                try {
+                    window.__codexRecordingStarted = true;
+                    window.__codexOriginalSetupRecording(canvas, durationMs);
+                } catch (error) {
+                    console.error('❌ 自动启动录制失败', error);
+                }
+            }
+        };
+
+        if (typeof setupRecording !== 'undefined') {
+            window.__codexOriginalSetupRecording = setupRecording;
+            window.setupRecording = function(...args) {
+                if (!window.__codexRecordingStarted) {
+                    window.__codexRecordingStarted = true;
+                }
+                return window.__codexOriginalSetupRecording(...args);
+            };
+            console.log('✅ setupRecording function loaded and made global');
+        } else {
+            console.error('❌ setupRecording function not found after loading recording.js');
+        }
+    </script>
+</head>
+<body>
+    <!-- Load animation with ES modules -->
+    <script type="module">
+        // Import Three.js as ES module
+        import * as THREE from 'three';
+        
+        // Make THREE globally available for compatibility with generated code
+        window.THREE = THREE;
+        
+        // Wait for CANNON.js to load (loaded globally above)
+        function waitForLibraries() {
+            return new Promise((resolve) => {
+                const checkLibraries = () => {
+                    if (typeof THREE !== 'undefined' && typeof CANNON !== 'undefined' && 
+                        THREE.Scene && CANNON.World) {
+                        console.log('✅ All libraries loaded successfully!');
+                        console.log('THREE version:', THREE.REVISION);
+                        console.log('CANNON available:', typeof CANNON !== 'undefined');
+                        resolve();
+                    } else {
+                        setTimeout(checkLibraries, 100);
+                    }
+                };
+                checkLibraries();
+            });
+        }
+        
+        // Load animation script after libraries are ready
+        waitForLibraries().then(async () => {
+            try {
+                // Ensure setupRecording is available in the global scope
+                if (typeof setupRecording === 'undefined') {
+                    console.error('❌ setupRecording function not found');
+                    throw new Error('setupRecording function is required');
+                }
+                
+                // Make setupRecording globally accessible
+                window.setupRecording = setupRecording;
+                
+                // Import and execute animation code
+                const response = await fetch('animation.js');
+                const animationCode = await response.text();
+                
+                // Create a comprehensive context with all needed globals
+                const animationContext = {
+                    THREE: THREE,
+                    CANNON: CANNON,
+                    setupRecording: setupRecording,
+                    window: window,
+                    document: document,
+                    console: console,
+                    requestAnimationFrame: requestAnimationFrame,
+                    setTimeout: setTimeout,
+                    Date: Date
+                };
+                
+                // Create function with all globals as parameters
+                const paramNames = Object.keys(animationContext);
+                const paramValues = Object.values(animationContext);
+                
+                const animationFunction = new Function(...paramNames, animationCode);
+                animationFunction(...paramValues);
+
+                const ensureDelays = [1500, 3000, 5000];
+                ensureDelays.forEach(delay => {
+                    setTimeout(() => {
+                        if (typeof window.__codexEnsureRecording === 'function') {
+                            window.__codexEnsureRecording();
+                        }
+                    }, delay);
+                });
+                
+                console.log('🎬 Animation started successfully');
+            } catch (error) {
+                console.error('❌ Error loading animation:', error);
+                console.error('Available functions:', Object.keys(window).filter(k => typeof window[k] === 'function'));
+            }
+        });
+    </script>
+</body>
+</html>
