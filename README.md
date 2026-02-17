@@ -1,6 +1,6 @@
 # VisPhyWorld: Probing Physical Reasoning via Code-Driven Video Reconstruction
 
-[🌐 Project Page](https://tiger-ai-lab.github.io/VisPhyWorld/) · [📄 Preprint](TODO) · [🤗 HF Datasets](https://huggingface.co/collections/TIGER-Lab/visphyworld)
+[🌐 Project Page](https://tiger-ai-lab.github.io/VisPhyWorld/) · [📄 Preprint](https://arxiv.org/abs/2602.13294) · [🤗 HF Datasets](https://huggingface.co/collections/TIGER-Lab/visphyworld)
 
 VisPhyWorld evaluates physical reasoning by turning a model's prediction into an **executable hypothesis**: given video observations, an LLM generates simulation code that is re-simulated under a fixed physics engine to predict future motion.
 
@@ -139,10 +139,13 @@ done
 ### BibTeX
 
 ```bibtex
-@misc{visphyworld,
-  title        = {VisPhyWorld},
-  howpublished = {\\url{https://github.com/TIGER-AI-Lab/VisPhyWorld}},
-  url          = {https://github.com/TIGER-AI-Lab/VisPhyWorld},
-  note         = {GitHub repository},
+@misc{liang2026visphyworldprobingphysicalreasoning,
+      title={VisPhyWorld: Probing Physical Reasoning via Code-Driven Video Reconstruction}, 
+      author={Jiarong Liang and Max Ku and Ka-Hei Hui and Ping Nie and Wenhu Chen},
+      year={2026},
+      eprint={2602.13294},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2602.13294}, 
 }
 ```
