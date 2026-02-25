@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VisExpert Web Demo</title>
+    <link rel="stylesheet" href="./static/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div class="brand">
+          <h1 class="title">Case Studies</h1>
+          <!-- <div class="subtitle">GT prompt + GT frames (1 &amp; 10) + model videos (Three.js)</div> -->
+        </div>
+
+        <div class="sample-nav" aria-label="Sample navigation">
+          <button id="prevSample" class="nav-btn" type="button" aria-label="Previous sample">‹</button>
+
+          <div class="sample-meta">
+            <div id="sampleId" class="sample-id">—</div>
+            <div id="sampleCounter" class="sample-counter">—</div>
+          </div>
+
+          <button id="nextSample" class="nav-btn" type="button" aria-label="Next sample">›</button>
+
+          <label class="sr-only" for="sampleSelect">Select sample</label>
+          <select id="sampleSelect" class="sample-select"></select>
+        </div>
+      </header>
+
+      <section class="card prompt-card" aria-label="Prompt">
+        <div class="card-title">PROMPT</div>
+        <div id="promptText" class="prompt-text">—</div>
+      </section>
+
+      <section class="card gt-card" aria-label="Ground truth and outputs">
+        <div class="card-title">GROUND TRUTH</div>
+
+        <div class="gt-grid">
+          <div class="gt-frames">
+            <div class="frame-block">
+              <div class="frame-label">FIRST</div>
+              <img id="gtFrameFirst" class="frame-img" alt="Ground truth frame 01" loading="lazy" />
+            </div>
+            <div class="frame-block">
+              <div class="frame-label">TENTH</div>
+              <img id="gtFrameTenth" class="frame-img" alt="Ground truth frame 10" loading="lazy" />
+            </div>
+          </div>
+
+          <div class="gt-videos">
+            <div class="video-block">
+              <div id="modelBadge" class="badge">Model</div>
+              <video
+                id="modelVideo"
+                class="video"
+                controls
+                muted
+                playsinline
+                preload="metadata"
+              ></video>
+            </div>
+            <div class="video-block">
+              <div class="badge">Ground Truth</div>
+              <video id="gtVideo" class="video" controls muted playsinline preload="metadata"></video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card models-card" aria-label="Model outputs">
+        <div class="models-header">
+          <div class="card-title">MODEL OUTPUTS</div>
+
+          <div class="models-scroll">
+            <button id="scrollLeft" class="scroll-btn" type="button" aria-label="Scroll models left">‹</button>
+            <div id="modelButtons" class="model-buttons" role="tablist" aria-label="Models"></div>
+            <button id="scrollRight" class="scroll-btn" type="button" aria-label="Scroll models right">›</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="hint">Tip: use ←/→ to switch samples.</div>
+      </footer>
+    </main>
+
+    <script src="./static/manifest.js"></script>
+    <script src="./static/app.js"></script>
+  </body>
+</html>

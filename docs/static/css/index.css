@@ -126,3 +126,44 @@ body {
   height: auto;
   object-fit: contain;
 }
+
+.vpw-dataset-showcase {
+  margin-top: 1.25rem;
+}
+
+.vpw-dataset-showcase img {
+  display: block;
+  margin: 0 auto;
+  width: 92%;
+  max-width: 720px;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.vpw-embedded-demo {
+  margin-top: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.vpw-embedded-demo iframe {
+  width: 100%;
+  height: 1100px;
+  border: 0;
+  display: block;
+  background: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .vpw-dataset-showcase img {
+    width: 100%;
+  }
+
+  .vpw-embedded-demo iframe {
+    height: 1500px;
+  }
+}
