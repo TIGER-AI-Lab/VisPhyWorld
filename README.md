@@ -2,6 +2,11 @@
 
 [🌐 Project Page](https://tiger-ai-lab.github.io/VisPhyWorld/) · [📄 Preprint](https://arxiv.org/abs/2602.13294) · [🤗 HF Datasets](https://huggingface.co/collections/TIGER-Lab/visphyworld)
 
+## 📰 News
+
+- **2026-02-25:** Updated the visuals in project page, it’s easier to see how different LLMs compare in reconstruction.
+- **2026-02-08:** VisPhyWorld and VisPhyBench are now publicly released!
+
 VisPhyWorld evaluates physical reasoning by turning a model's prediction into an **executable hypothesis**: given video observations, an LLM generates simulation code that is re-simulated under a fixed physics engine to predict future motion.
 
 <p align="center">
@@ -14,9 +19,8 @@ VisPhyWorld evaluates physical reasoning by turning a model's prediction into an
 - **2D + 3D stress testing:** VisPhyBench includes both 2D scenes and perspective-rendered 3D scenes to challenge contact/occlusion and depth-dependent interactions.
 - **Structured scene annotations for LLMs:** each sample ships with first-frame detection JSON (objects, colors, positions, bboxes, sizes) to ground code generation.
 
-## 📰 News
 
-- **2026-02-08:** VisPhyWorld and VisPhyBench are now publicly released!
+
 
 ## 📌 Introduction
 
