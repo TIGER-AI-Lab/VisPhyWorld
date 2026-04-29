@@ -4,7 +4,7 @@
 
 ## 📰 News
 
-- **2026-04-21:** 💥 New Visualizer Space in the huggingface page, everyone can easily check GT vs generated videos across engines and models!
+- **2026-04-21:** 💥 New [Visualizer Space](https://huggingface.co/spaces/TIGER-Lab/VisPhyWorld-Comparator) in the huggingface page, everyone can easily check GT vs generated videos across engines and models!
 - **2026-02-25:** Updated the visuals in project page, it’s easier to see how different LLMs compare in reconstruction.
 - **2026-02-08:** VisPhyWorld and VisPhyBench are now publicly released!
 
