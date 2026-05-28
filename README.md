@@ -144,13 +144,10 @@ done
 ### BibTeX
 
 ```bibtex
-@misc{liang2026visphyworldprobingphysicalreasoning,
-      title={VisPhyWorld: Probing Physical Reasoning via Code-Driven Video Reconstruction}, 
-      author={Jiarong Liang and Max Ku and Ka-Hei Hui and Ping Nie and Wenhu Chen},
-      year={2026},
-      eprint={2602.13294},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2602.13294}, 
+@article{liang2026visphyworld,
+  title={VisPhyWorld: Probing Physical Reasoning via Code-Driven Video Reconstruction},
+  author={Liang, Jiarong and Ku, Max and Hui, Ka-Hei and Nie, Ping and Chen, Wenhu},
+  journal={arXiv preprint arXiv:2602.13294},
+  year={2026}
 }
 ```
